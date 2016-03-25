@@ -1,21 +1,19 @@
 package com.pedrocavalero.cap392.eventos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventGeneratorTimer implements EventGenerator{
 
-	protected List<EventConsumer> consumers;
 	private String message;
-	public EventGeneratorTimer(String message) {
+	protected EventMediator mediator;
+	
+	public EventGeneratorTimer(String message, EventMediator mediator) {
 		this.message = message;
-		consumers = new ArrayList<>();
+		this.mediator = mediator;
 	}
 	@Override
 	public void start() {
 		new Thread(() -> {
 			while(true){
-				send(EventFactory.createMessage(prepareMessage()));
+				send(EventFactory.createMessage(prepareMessage(), this));
 				try {
 					Thread.sleep(getWaitTimeMilis());
 				} catch (Exception e) {
@@ -31,11 +29,7 @@ public class EventGeneratorTimer implements EventGenerator{
 		return 5000;
 	}
 	public void send(Event event) {
-		consumers.stream().forEach(ec -> ec.receive(event));
-	}
-	@Override
-	public void addConsumer(EventConsumer ec) {
-		consumers.add(ec);
+		mediator.send(event);
 	}
 
 }

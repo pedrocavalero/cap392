@@ -4,5 +4,4 @@ public interface EventGenerator {
 
 	void start();
 	void send(Event event);
-	void addConsumer(EventConsumer ec);
 }

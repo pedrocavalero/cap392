@@ -4,8 +4,8 @@ public class EventGeneratorTimerRandom extends EventGeneratorTimer{
 
 	private boolean printTimeMessage;
 
-	public EventGeneratorTimerRandom(String message, boolean printTimeMessage) {
-		super(message);
+	public EventGeneratorTimerRandom(String message, boolean printTimeMessage, EventMediator mediator) {
+		super(message, mediator);
 		this.printTimeMessage = printTimeMessage;
 	}
 
