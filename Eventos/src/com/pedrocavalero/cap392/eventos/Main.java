@@ -6,9 +6,10 @@ public class Main {
 
 		EventConsumer ec1 = new EventConsumerString();
 		EventConsumer ec2 = new EventConsumerCounter();
-		EventGenerator eg = new EventGeneratorTimerRandom("Hello World!", true);
-		eg.addConsumer(ec1);
+		EventConsumerGenerator eg = new EventConsumerGenerator("Hello World!", true);
+		//eg.addConsumer(ec1);
 		eg.addConsumer(ec2);
+		eg.addConsumer(eg);
 		eg.start();
 		
 		

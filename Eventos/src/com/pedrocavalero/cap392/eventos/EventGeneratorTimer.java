@@ -5,7 +5,7 @@ import java.util.List;
 
 public class EventGeneratorTimer implements EventGenerator{
 
-	private List<EventConsumer> consumers;
+	protected List<EventConsumer> consumers;
 	private String message;
 	public EventGeneratorTimer(String message) {
 		this.message = message;
